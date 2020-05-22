@@ -101,3 +101,25 @@ Or do we like to have some checks and balances beside HASS?
 * When at home a Button is pressed beside the wallbox indicating that the car has to be loaded.
 * The solar stripes then are reconfigured to put 2/3 of their power into one inverter phase to power the wallbox with 8 kW.
 * This is a good strategy if there is sun. But if there is no sun, the battery is the next best choice. And if the battery is low it may be a good choice to power the car from the grid.
+
+### UC002 ###
+Goal would be to integrate different energy storage device instead of the car.
+Electric hot water heater inline with gas water heather already present in the home. During winter when sun is not as abundant as it is in summer use time of use tariff with power company to supplement power needs (charge batteries to certain level) which would help lower down the energy cost.
+
+What I have:
+* 53 KWh of LiFePo4 cells equally divided into 3 power walls.
+* 3 LV5048 inverter/chargers
+* 9 KW of solar panels
+* 3 Dumb BMS's. They limit charge/discharge at 120A and monitor cell voltage. If cell voltage is above or below limits they stop everything.
+* 3 Balancers/monitors from JKBMS for purpose of monitoring cell health.
+
+Since Lithium chemistry has almost flat discharge curve at 0.2 C rate it is impossible to tell SOC by just looking at cell/power wall voltage. Reasonably accurate SOC device must be used in order to implement what is outlined in WIP discussion.
+
+Reasonably accurate SOC device must take in to account Voltage, Amperage and Temp from power wall according to documentation I have read.
+
+So far I have:
+* Volts provided by JKBMS
+* Amps provided by ADS1115
+* Temp provided by DHT22
+
+All going to a Raspberry Pi
